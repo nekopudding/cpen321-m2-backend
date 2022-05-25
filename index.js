@@ -1,5 +1,5 @@
 const express = require("express");
-const mongoose = require("mongoose");
+// const mongoose = require("mongoose");
 const { networkInterfaces } = require('os');
 
 const nets = networkInterfaces();
@@ -9,14 +9,14 @@ const PORT = process.env.PORT || 8081;
 const app = express();
 app.use(express.json());
 
-const uri = "mongodb://localhost:27017/"
-const db = "sessionDB"
+// const uri = "mongodb://localhost:27017/"
+// const db = "sessionDB"
 
-main().catch(err => console.log(err));
-async function main() {
-  await mongoose.connect(uri + db);
-  console.log("connected to mongodb");
-}
+// main().catch(err => console.log(err));
+// async function main() {
+//   await mongoose.connect(uri + db);
+//   console.log("connected to mongodb");
+// }
 
 app.get("/", (req,res) => {
   res.send("Hello, available paths are /ip, /name, /time");
@@ -46,10 +46,10 @@ app.get("/name", (req,res) => {
   });
 });
 
-app.route("/db")
-.get(async (req, res) => {
-  await Session.findOne({username: "John Doe"}, (err, foundSession) => {})
-})
+// app.route("/db")
+// .get(async (req, res) => {
+//   await Session.findOne({username: "John Doe"}, (err, foundSession) => {})
+// })
 
 app.listen(PORT, () => {
   console.log(`Server listening on ${PORT}`);
