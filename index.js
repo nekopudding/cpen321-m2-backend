@@ -17,6 +17,10 @@ async function main() {
   await mongoose.connect(uri + db);
   console.log("connected to mongodb");
 }
+
+app.get("/", (req,res) => {
+  res.send("Hello, available paths are /ip, /name, /time");
+})
 app.get("/ip", (req,res) => {
   require('dns').lookup(require('os').hostname(), (err, serverIP, fam) => {
     if (err) console.log(err);
